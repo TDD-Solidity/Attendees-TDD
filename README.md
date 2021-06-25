@@ -16,7 +16,14 @@ Let's build a system where:
 
    - when declaring their attendace, users submit their name to be displayed and their t-shirt size (valid options are small, medium, large, extra large, and double extra large. If no t-shirt size is provided, use "large" as the default.)
 
-## _Admin User(s)_
 
-- 
+## _Admin User(s can...)_
+
+- query for all attendee addresses
+
+- query for all banned addresses
+
+- ban a user
+
+- ask if a specific address is banned or not 
 
