@@ -1,0 +1,27 @@
+{
+  "name": "attendees-tdd",
+  "version": "1.0.0",
+  "description": "Code from the EthbuildersNYC meetup event on 6-25-2021",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test",
+    "test:watch": "nodemon --ext 'js,sol' --exec 'truffle test'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TDD-Solidity/Attendees-TDD.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TDD-Solidity/Attendees-TDD/issues"
+  },
+  "homepage": "https://github.com/TDD-Solidity/Attendees-TDD#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "truffle-assertions": "^0.9.2"
+  }
+}
