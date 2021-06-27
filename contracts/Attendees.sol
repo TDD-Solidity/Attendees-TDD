@@ -49,7 +49,7 @@ contract Attendees {
       return attendees;
     }
 
-    function initiateAirdrop() public {
+    function initiateAirdrop() public restricted {
 
       uint equalShares = [];
 
@@ -63,6 +63,7 @@ contract Attendees {
 
     function pullPayment() public {
       paymentSplitter.release(msg.sender);
+      // paymentSplitter.claim(msg.sender);
     }
 
 }
