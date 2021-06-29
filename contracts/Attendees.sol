@@ -11,15 +11,22 @@ contract Attendees {
     struct AttendeeInfo {
       string displayName;
       uint tShirtSize;
+      bool isGrandPrizeWinner;
     }
 
     address public owner = msg.sender;
 
     address[] private attendees;
 
+    address[] private recipientAddresses;
+
+    uint[] private shares;
+
     uint attendeesCount;
 
     mapping(address => AttendeeInfo) attendeeToInfo;
+
+    address DEV_TEAM_ADDRESS = "0x1231231342345234";
 
     PaymentSplitter paymentSplitter;
 
@@ -35,8 +42,12 @@ contract Attendees {
       
       // TODO - require that the caller address was not banned.
 
+
       attendees.push(msg.sender);
-      attendeeToInfo[msg.sender] = AttendeeInfo(displayName, shirtSize);
+      recipientAddresses.push(msg.sender);
+      attendeeToInfo[msg.sender] = AttendeeInfo(displayName, shirtSize, false);
+
+      shares.push(1);
 
       attendeesCount++;
     }
@@ -58,6 +69,37 @@ contract Attendees {
       }
 
       paymentSplitter = PaymentSplitter(attendees, equalShares);
+
+    }
+
+    function spinGiveawayWheel() public restricted {
+
+      // all nonwinners have one share
+      
+      uint devTeamPercentage = 5;
+      uint winnerPercentage = 20;
+
+      uint devTeamShares = devTeamPercentage * (attendeesCount - 1) / 
+        (1 - devdevTeamPercentage - winnerPercentage);
+
+      uint winnerShares = winnerPercentage * (attendeesCount - 1) / 
+        (1 - devdevTeamPercentage - winnerPercentage);
+
+      // TODO  - use chainlink VRF or something similar to get a 
+      //         random integer between 0 and attendeeCount - 1 
+
+      uint randomlyChosenUint = 1;
+
+      shares[randomlyChosenUint] = winnerShares;
+      
+      attendeeToInfo[recipientAddresses[randomlyChosenUint]].isGrandPrizeWinner = true;
+
+      // push dev team address into array AFTER a winner is chosen...
+
+      recipientAddresses.push(DEV_TEAM_ADDRESS);
+      shares.push(devTeamShares);
+
+      paymentSplitter = PaymentSplitter(recipientAddresses, shares);
 
     }
 

@@ -38,7 +38,6 @@ Bonus 1 - Randomly Choose a Non-Banned Attendee
 Hint: Use An Oracle /   Chainlink Provably Random  
 Function
 
-
 ---
 
 Bonus 2 - Give Attendees Something!
